@@ -2,7 +2,6 @@ import { google } from "googleapis";
 import { supabaseAdmin } from "@/integrations_supabase/client.server";
 import * as path from "path";
 import * as fs from "fs";
-import { fileURLToPath } from "url";
 
 // ── Types ───────────────────────────────────────────────────────────────────
 export type SyncResult = {
@@ -12,31 +11,6 @@ export type SyncResult = {
   /** Human-readable error message when success is false */
   error?: string;
 };
-
-// ── Locate service account JSON file ────────────────────────────────────────
-function findServiceAccountPath(): string {
-  // Try project root (dev server)
-  const candidates = [
-    path.resolve(process.cwd(), "rubric-attendance-sync-3b680dc1eb57.json"),
-    // Try relative to this file in dev (src/lib -> ../.. -> project root)
-    path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "rubric-attendance-sync-3b680dc1eb57.json"),
-  ];
-
-  for (const filepath of candidates) {
-    if (fs.existsSync(filepath)) {
-      return filepath;
-    }
-  }
-
-  throw new Error(
-    `Service account file not found. Tried:\n  ${candidates.join("\n  ")}`,
-  );
-}
-
-function loadCredentials(): { client_email: string; private_key: string } {
-  const raw = fs.readFileSync(findServiceAccountPath(), "utf-8");
-  return JSON.parse(raw);
-}
 
 // ── Config (read from env every call — avoids stale module-scope reads) ─────
 function getConfig() {
@@ -48,6 +22,35 @@ function getConfig() {
   }
 
   return { spreadsheetId, sheetName };
+}
+
+// ── Load Google service account credentials ──────────────────────────────────
+// Tries env var first (Vercel), falls back to file on disk (local dev).
+function loadCredentials(): { client_email: string; private_key: string } {
+  const envJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+  if (envJson) {
+    try {
+      return JSON.parse(envJson);
+    } catch (e) {
+      throw new Error(`Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON env var: ${e}`);
+    }
+  }
+
+  // Fallback: read from file on disk (local development)
+  const possiblePaths = [
+    path.resolve(process.cwd(), "rubric-attendance-sync-3b680dc1eb57.json"),
+  ];
+
+  for (const filepath of possiblePaths) {
+    if (fs.existsSync(filepath)) {
+      const raw = fs.readFileSync(filepath, "utf-8");
+      return JSON.parse(raw);
+    }
+  }
+
+  throw new Error(
+    "Google service account credentials not found. Set GOOGLE_SERVICE_ACCOUNT_JSON env var, or place the JSON file in the project root.",
+  );
 }
 
 // ── Aggregate attendance records into per-student counts ────────────────────
