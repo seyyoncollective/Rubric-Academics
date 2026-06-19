@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "rubric-attendance-sync",
+  "private_key_id": "a7530495940affc4e95984619fc3144f065626a9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCWIkO+xNvv0qKf\nPw7KQNVfsZTaEy3prA0IydwrgUHlHVxhhb04V7bBrSHECCVKpW4XmENCnvrO4c/V\n+yriyPzkIXYxp+uVBCKATseY2jsFvrOiT6Pkk5EGtxvv66gidYFZ8ZkOiC9g6YEv\n+EsHLfg2TDQoCpuh3QsBlXmlxL4avc5MkAyMRLSAzOb60N0RLlVA8/5nmrrmKwJg\nHdHsHhA+qIV6SFHT8IPGYFuFvYC6+F/DxBY+VzCBE7qg+QI83cbq70FZyTfua0I8\nJtpl6aipc6+Qt08mp1tqTOq00U/iv3/kjQCR2+F7h8X1WfhByMkiWIMvpnkfoYEd\nLmgq/JGhAgMBAAECggEAAuLtwoEuaVH3ZnBj7GeKsqhLYFX2EAQKzBx1azC0/56s\n5AMaPDcTgG2/tHEjpme/0hxPTryXvdqBkG+fx3RtyEUMbK/5y4ek0iqxk7K+Z8He\n2kQFtqNPqn1iwB4bwW3Y6s3GT402u/pBTZbMenrbxs94QTzS+S2yxHkHObSqowDz\nqGzpU1lqbdD2bCP0YKyI8JEbQaJqRj/m1f2nZM2EgH+P4CgFBsGJMxUPIs7aBpB3\nbPbFs1gbngd3pcwEe/RdfMNhPWFfx3bEmqOBZ5otP31wZ77a4Ck87MK6XIfU/oiJ\nXMqMvvRXdDmhZrPCYVIM3UxUJ7DxOt9tz861ytvkQQKBgQDGpWS63/fNgJtQDv55\nVczx5gjKrrpgvvDUtngyzslJNQpZ89qjwHQT4oqzVw/aHWe5BXN2wH9hHUpOO4ae\n+/W2EyAY19VePiAs+ml8QtS9OVJCOBpIYJSI+iwE/HHFmdJgvf9vZVrz8CtVPYJv\nSc2lKEEYm0zB4F39Zsi7LDgGdQKBgQDBeyr2mQ0mjBn5CJiVLckV7Mnq1cs9kt+/\nkFqSbMpaigLeYEC9xCI8kHr/KwYQypHfV3fnZEgsanlwM/C0h3BOYPqjEhTvdhL+\nNycCe8A57l2WjZbOFbHj6UqF+PGEHYrObHZ/zTJrZcGyeqddrSAUqwRt04SaBw28\nwas+Jj9w/QKBgQC8+uQVlLUe4FbhlyIpNKNBDmMWz5uoJn7fHqjDTU7ZQoiSgxdh\n6dmEgWUKsKz4CDmBH9p1AzUror3qJ18vKOzdRtymRc9LVTcvExv/h2T0j+/d55m5\neYhVuArgw3lJT8mBF8BGrdoVcEsJUPciAMiPcvha/IPNfjJsvLgCuVKjcQKBgQC1\nGvZ3R4JAv8mcCwjQMsBULoY+tAp/Q1j/Nj8haoXrQ941i4FuYAXwDQmkigAufX8X\nwQcyZ/MK6Ett1KCOS2y7YRmaxNUl5K8YmEWClJW1ZELkJvqvQy11eazRRNnFYeXJ\nHUu6izeTwfcSeq7pB6HM1tvZdbFcgBfCxMHm9eRSfQKBgF+CV1oBtJcop3TGcN/F\nilHzxVnCoC13JvY5wk0xbVa6MUgvprqZGRDzlchTwgPFugHTJcBIBuH0laK6MnBB\nTfJDsdVCDXabH0umKMlBJRSUk08m+jJsHUoCMQa96ob+cibAohpFUvwG+yCw0P2m\nKAZg53XsEHL/k2AmPt2whwiY\n-----END PRIVATE KEY-----\n",
+  "client_email": "rubric-attendance-sync@rubric-attendance-sync.iam.gserviceaccount.com",
+  "client_id": "114489519992613859930",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rubric-attendance-sync%40rubric-attendance-sync.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
