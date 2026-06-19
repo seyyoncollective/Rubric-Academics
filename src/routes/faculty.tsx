@@ -181,11 +181,19 @@ function FacultyPage() {
         log("google sheets sync result", result);
         if (!result.success) {
           console.warn("[FACULTY_PAGE] Google Sheets sync warning:", result.error);
-          toast.warning("Attendance saved, but sheet sync failed: " + (result.error || "Unknown"));
+          // Show a more detailed warning to help debug — includes both the message and type hint
+          const hint = (result.error || "").toLowerCase().includes("jwt")
+            ? "Check your Supabase SERVICE_ROLE_KEY on Vercel"
+            : (result.error || "").toLowerCase().includes("google") || (result.error || "").toLowerCase().includes("sheet")
+              ? "Check your Google service account credentials on Vercel"
+              : "Check Vercel environment variables";
+          toast.warning("Sheet sync: " + (result.error || "Unknown") + " — " + hint);
         }
       })
       .catch((err) => {
-        console.error("[FACULTY_PAGE] Google Sheets sync error:", err);
+        console.error("[FACULTY_PAGE] Google Sheets sync catch:", err);
+        const msg = err instanceof Error ? err.message : String(err);
+        toast.error("Sync request failed: " + msg);
         // Non-blocking — attendance is already safe in Supabase
       });
   }

@@ -4,7 +4,13 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+
+// ⚠️ IMPORTANT: The top-level `nitro: { ... }` option in @lovable.dev/vite-tanstack-config v2.4.0
+// is NOT forwarded to the actual Nitro build. The default Cloudflare preset silently remains.
+// To override the preset for Vercel deployment, we must explicitly import and inject the
+// nitro plugin inside the `vite.plugins` array below.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { nitro } from "nitro/vite";
 
 export default defineConfig({
   tanstackStart: {
@@ -12,12 +18,17 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  // Enable Nitro with Vercel preset for serverless deployment
-  nitro: {
-    preset: "vercel",
-    output: {
-      dir: ".vercel/output",
-      publicDir: ".vercel/output/static",
-    },
+  // Override the default Cloudflare Nitro preset with Vercel for serverless deployment.
+  // Injecting via vite.plugins ensures the override is actually applied.
+  vite: {
+    plugins: [
+      nitro({
+        preset: "vercel",
+        output: {
+          dir: ".vercel/output",
+          publicDir: ".vercel/output/static",
+        },
+      }),
+    ],
   },
 });
